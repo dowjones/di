@@ -1,14 +1,14 @@
 var should = require('should'),
-  Crawler = require('../lib/crawler'),
+  Resolver = require('../lib/resolver'),
   Package = require('../lib/package');
 
 Error.stackTraceLimit = 3;
 
-describe('Crawler', function () {
+describe('Resolver', function () {
   var unit;
 
   beforeEach(function () {
-    unit = new Crawler(__dirname + '/fixtures/r1');
+    unit = new Resolver(__dirname + '/fixtures/r1');
   });
 
   it('should find leaf', function (done) {
@@ -20,7 +20,7 @@ describe('Crawler', function () {
       list[0].path.should.match(/m3\/index.js/);
       done();
     }
-    unit.crawl('./m3', check);
+    unit.resolve('./m3', check);
   });
 
   it('should find a parent / leaf combo', function (done) {
@@ -33,7 +33,7 @@ describe('Crawler', function () {
       list[2].path.should.match(/m1\/index.js/);
       done();
     }
-    unit.crawl('./m1', check);
+    unit.resolve('./m1', check);
   });
 
   it('should require common from node_modules', function (done) {
@@ -47,7 +47,7 @@ describe('Crawler', function () {
       list[3].path.should.match(/mod_with_common\/index.js/);
       done();
     }
-    unit.crawl('./mod_with_common', check);
+    unit.resolve('./mod_with_common', check);
   });
 });
 
