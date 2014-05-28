@@ -1,6 +1,6 @@
 var simple = require('../');
 
-describe('Simple IOC', function () {
+describe.skip('Simple IOC', function () {
   var ioc;
 
   beforeEach(function () {
