@@ -9,5 +9,5 @@ M.$inject = [
 ];
 
 M.prototype.get = function () {
-  return this.common.get();
+  return 'MOD-' + this.common.get();
 };

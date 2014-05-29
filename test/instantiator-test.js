@@ -22,7 +22,7 @@ describe('Instantiator', function () {
       new Package('a', function () { this.answer = 42; })
     ]);
 
-    unit.get('a', check);
+    unit.create('a', check);
   });
 
   it('should create instance with deps', function (done) {
@@ -41,9 +41,9 @@ describe('Instantiator', function () {
     pkgB = new Package('b', B);
     pkgA = new Package('a', A);
 
-    pkgA.dependencyPaths = ['b'];
+    pkgA.injectedPaths = ['b'];
 
     resolver.resolve.yields(null, [pkgB, pkgA]);
-    unit.get('a', check);
+    unit.create('a', check);
   });
 });
