@@ -54,6 +54,7 @@ describe('Resolver', function () {
     function check(err, list) {
       if (err) return done(err);
       list.length.should.equal(2);
+      should.exist(list[0].path);
       done();
     }
     unit.resolve('./mod_with_core', check);

@@ -33,4 +33,13 @@ describe('IOC', function () {
     }
     unit.create('common', check);
   });
+
+  it('should create with core node module', function (done) {
+    function check(err, inst) {
+      if (err) return done(err);
+      inst.isOk().should.be.ok;
+      done();
+    }
+    unit.create('./mod_with_core', check);
+  });
 });
