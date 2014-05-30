@@ -49,5 +49,14 @@ describe('Resolver', function () {
     }
     unit.resolve('./mod_with_common', check);
   });
+
+  it('should require a core node module', function (done) {
+    function check(err, list) {
+      if (err) return done(err);
+      list.length.should.equal(2);
+      done();
+    }
+    unit.resolve('./mod_with_core', check);
+  });
 });
 
