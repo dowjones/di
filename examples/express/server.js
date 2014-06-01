@@ -22,3 +22,5 @@ app.use('/', resource('pages'));
 app.listen(PORT, function () {
   console.log('Listening on http://localhost:' + PORT);
 });
+
+console.log(app.get('view'));

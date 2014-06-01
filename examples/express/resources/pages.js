@@ -21,15 +21,21 @@ PageResource.prototype.route = function (router) {
 };
 
 PageResource.prototype.render = function (req, res, next) {
-  res.render(req.params.pageId, {
-    title: 'Awesome!'
-  });
+  var pageId = req.params.pageId || 'home';
+  if (!isValidPageId(pageId)) return next();
+  res.render(pageId, {title: 'Awesome!'});
 };
 
 PageResource.prototype.error = function (err, req, res, next) {
-  if (/failed to lookup/i.test(err.message)) {
-    req.params.pageId = 'home';
-    return this.render(req, res, next);
-  }
-  next(err);
+  if (!isNotFoundError(err)) return next(err);
+  res.status(404);
+  res.render('404', {title: 'Not Found'});
 };
+
+function isValidPageId(pageId) {
+  return /^[a-zA-Z0-9-]+$/.test(pageId);
+}
+
+function isNotFoundError(err) {
+  return (err.view && !err.view.path);
+}
