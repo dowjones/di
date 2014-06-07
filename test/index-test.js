@@ -7,6 +7,15 @@ describe('IOC', function () {
     unit = ioc(__dirname + '/fixtures/r1');
   });
 
+  it('should create an instance with an empty inject', function (done) {
+    function check(err, inst) {
+      if (err) return done(err);
+      inst.answer().should.equal(42);
+      done();
+    }
+    unit.create('./empty_inject', check);
+  });
+
   it('should create instance of injected', function (done) {
     function check(err, inst) {
       if (err) return done(err);
