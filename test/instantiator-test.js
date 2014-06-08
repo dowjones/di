@@ -11,28 +11,17 @@ describe('Instantiator', function () {
     unit = new Instantiator(resolver);
   });
 
-  it('should create instance without deps', function (done) {
-    function check(err, instance) {
-      if (err) return done(err);
-      instance.answer.should.equal(42);
-      done();
-    }
-
-    resolver.resolve.yields(null, [
+  it('should create instance without deps', function () {
+    resolver.resolve.returns([
       new Package('a', function () { this.answer = 42; })
     ]);
 
-    unit.create('a', check);
+    var instance = unit.create('a');
+    instance.answer.should.equal(42);
   });
 
-  it('should create instance with deps', function (done) {
-    var pkgA, pkgB;
-
-    function check(err, instance) {
-      if (err) return done(err);
-      instance.fav.should.equal(7);
-      done();
-    }
+  it('should create instance with deps', function () {
+    var pkgA, pkgB, instance;
 
     function B() { this.fav = 7; }
     function A(b) { this.fav = b.fav; }
@@ -43,7 +32,8 @@ describe('Instantiator', function () {
 
     pkgA.injectedPaths = ['b'];
 
-    resolver.resolve.yields(null, [pkgB, pkgA]);
-    unit.create('a', check);
+    resolver.resolve.returns([pkgB, pkgA]);
+    instance = unit.create('a');
+    instance.fav.should.equal(7);
   });
 });

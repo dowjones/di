@@ -10,14 +10,14 @@ function setup(ioc, name) {
 }
 
 function create(ioc, resourcePath, req, res, next) {
-  var router = express.Router();
+  var router = express.Router(), resource;
 
-  function route(err, resource) {
-    if (err) return next(err);
-    try { resource.route(router); }
-    catch (err) { return next(err); }
-    router.handle(req, res, next);
+  try {
+    resource = ioc.create(resourcePath);
+    resource.route(router);
+  } catch (err) {
+    return next(err);
   }
 
-  ioc.create(resourcePath, route);
+  router.handle(req, res, next);
 }

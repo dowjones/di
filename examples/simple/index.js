@@ -1,2 +1,2 @@
 var ioc = require('../../')(__dirname);
-module.exports = ioc.create.bind(ioc, './service');
+module.exports = ioc.create('./service');
