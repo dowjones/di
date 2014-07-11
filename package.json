@@ -1,7 +1,7 @@
 {
-  "name": "simple-ioc",
+  "name": "areus-ioc",
   "version": "0.1.0",
-  "description": "Simple IOC Container",
+  "description": "Areus IOC Container",
   "main": "./lib/index.js",
   "directories": {
     "test": "test"
