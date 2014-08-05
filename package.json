@@ -15,5 +15,8 @@
     "mocha": "^1.19.0",
     "should": "^3.3.2",
     "sinon": "^1.10.0"
+  },
+  "dependencies": {
+    "resolve": "^0.7.4"
   }
 }
