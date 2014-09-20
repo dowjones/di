@@ -1,4 +1,4 @@
-# Dependency Injector
+# Dependency Injector [![Build Status](https://secure.travis-ci.org/areusjs/di.png)](http://travis-ci.org/areusjs/di)
 
 Here's an example of a module that has two parts: a service and a db.
 The service depends on the db.
@@ -74,6 +74,7 @@ The `__dirname` is the root directory, relative to which
 
 - **Testability** to test `Service` a new instance can be created
   with a fake Db as the first argument. For example:
+
 
 ```javascript
 var Service = require('../service'),
