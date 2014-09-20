@@ -1,7 +1,7 @@
 # Dependency Injector
 
-Here's an example of a module that has two parts: a service
-and a db, where the service depends on the db.
+Here's an example of a module that has two parts: a service and a db.
+The service depends on the db.
 
 Here's the `db.js`:
 ```javascript
@@ -73,7 +73,9 @@ The `__dirname` is the root directory, relative to which
   `Db` can change independently from `Service`.
 
 - **Testability** to test `Service` a new instance can be created
-  with a fake Db as the first argument. For example: ```javascript
+  with a fake Db as the first argument. For example:
+
+```javascript
 var Service = require('../service'),
   assert = require('assert'),
   fakeDb, service;
@@ -98,4 +100,4 @@ assert.equal(7, service.answer());
 
 
 ## License
-(MIT)[LICENSE]
+[MIT](LICENSE)
