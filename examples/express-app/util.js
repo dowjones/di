@@ -1,19 +1,19 @@
 var express = require('express');
 
-exports.createResource = function (ioc) {
-  return setup.bind(null, ioc);
+exports.createResource = function (di) {
+  return setup.bind(null, di);
 };
 
-function setup(ioc, name) {
+function setup(di, name) {
   var resourcePath = './resources/' + name;
-  return create.bind(null, ioc, resourcePath);
+  return create.bind(null, di, resourcePath);
 }
 
-function create(ioc, resourcePath, req, res, next) {
+function create(di, resourcePath, req, res, next) {
   var router = express.Router(), resource;
 
   try {
-    resource = ioc.create(resourcePath);
+    resource = di.create(resourcePath);
     resource.route(router);
   } catch (err) {
     return next(err);

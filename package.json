@@ -1,17 +1,19 @@
 {
-  "name": "areus-ioc",
+  "name": "areus-di",
   "version": "0.1.0",
-  "description": "Areus IOC Container",
+  "description": "Areus Dependency Injector",
   "main": "./lib/index.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
     "test": "mocha -r should --recursive",
-    "test-watch": "mocha -r should --recursive -w -G -R min"
+    "test-watch": "mocha -r should --recursive -w -G -R min",
+    "test-cov": "istanbul cover _mocha -- -r should --recursive"
   },
   "license": "MIT",
   "devDependencies": {
+    "istanbul": "^0.3.2",
     "mocha": "^1.19.0",
     "should": "^3.3.2",
     "sinon": "^1.10.0"

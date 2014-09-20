@@ -1,10 +1,10 @@
-var ioc = require('../');
+var DI = require('../');
 
-describe('IOC', function () {
+describe('DI', function () {
   var unit;
 
   beforeEach(function () {
-    unit = ioc(__dirname + '/fixtures/r1');
+    unit = DI(__dirname + '/fixtures/r1');
   });
 
   it('should create an instance with an empty inject', function () {

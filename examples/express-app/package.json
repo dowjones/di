@@ -1,5 +1,5 @@
 {
-  "name": "express",
+  "name": "express-app",
   "version": "0.1.0",
   "scripts": {
     "test": "mocha -r should --recursive",
