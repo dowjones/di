@@ -7,7 +7,7 @@ describe('Instantiator', function () {
 
   beforeEach(function () {
     function noop() {}
-    resolver = stub({resolve: noop});
+    resolver = stub({provide: noop, resolve: noop});
     unit = new Instantiator(resolver);
   });
 
@@ -35,5 +35,10 @@ describe('Instantiator', function () {
     resolver.resolve.returns([pkgB, pkgA]);
     instance = unit.create('a');
     instance.fav.should.equal(7);
+  });
+
+  it('should allow providing pre-resolved packages', function () {
+    unit.provide({a: 4});
+    resolver.provide.calledOnce.should.be.ok;
   });
 });

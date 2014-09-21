@@ -1,6 +1,6 @@
 {
   "name": "areus-di",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Areus Dependency Injector",
   "main": "./lib/index.js",
   "directories": {

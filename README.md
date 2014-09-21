@@ -54,7 +54,9 @@ Finally, here's `index.js` that gets a fresh new instance
 of the `Service` class.
 
 ```javascript
-var di = require('areus-di')(__dirname);
+var DI = require('areus-di'),
+  di = DI(__dirname);
+
 exports.create = function () {
   return di.create('./service');
 };
@@ -62,6 +64,43 @@ exports.create = function () {
 
 The `__dirname` is the root directory, relative to which
 `./service` is locataed.
+
+
+## Providing Existing Packages
+
+Use the `.provide()` method to provide existing packages.
+Any package that you give to `.provide()` will be available
+in `$inject`. Here's an example:
+
+`index.js`
+```javascript
+var DI = require('areus-di'),
+  mongo = require('mongoskin'),
+  di = DI(__dirname);
+
+di.provide({
+  db: mongo.db(process.env.MONGO_URI)
+});
+
+di.create('./article_service');
+```
+
+`article_service.js`
+```javascript
+module.exports = ArticleService;
+
+function ArticleService(db) {
+  this._articles = db.collection('articles');
+}
+
+ArticleService.$inject = [
+  'db'
+];
+
+ArticleService.prototype.findOne = function (id, cb) {
+  this._articles.findOne(id, cb);
+};
+```
 
 
 ## Why Use a Dependency Injector?

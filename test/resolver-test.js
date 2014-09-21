@@ -41,5 +41,12 @@ describe('Resolver', function () {
     list.length.should.equal(2);
     should.exist(list[0].path);
   });
+
+  it('should allow providing pre-resolved packages', function () {
+    unit.provide({a: '7'});
+    var list = unit.resolve('a');
+    list.length.should.equal(1);
+    list[0].factory.should.equal('7');
+  });
 });
 
