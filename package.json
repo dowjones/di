@@ -10,10 +10,12 @@
   "scripts": {
     "test": "mocha -r should --recursive",
     "test-watch": "mocha -r should --recursive -w -G -R min",
-    "test-cov": "istanbul cover _mocha -- -r should --recursive"
+    "test-cov": "istanbul cover _mocha -- -r should --recursive",
+    "bench": "node ./bench/suite.js"
   },
   "license": "MIT",
   "devDependencies": {
+    "benchmark": "^1.0.0",
     "istanbul": "^0.3.2",
     "mocha": "^1.19.0",
     "should": "^3.3.2",
