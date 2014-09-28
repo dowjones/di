@@ -15,12 +15,22 @@ console.log('Running benchmark suite...');
 
 suite
 .add('Vanilla', function() {
-  var a = new A(new B(new C()));
-  a.b.c.answer();
+  var a, b, c;
+
+  c = Object.create(C.prototype);
+  C.apply(c, []);
+
+  b = Object.create(B.prototype);
+  B.apply(b, [c]);
+
+  a = Object.create(A.prototype);
+  A.apply(a, [b]);
+
+  assert.equal(42, a.b.c.answer());
 })
 .add('DI', function() {
   var a = di.create('./a');
-  a.b.c.answer();
+  assert.equal(42, a.b.c.answer());
 })
 
 .on('cycle', function(event) {
