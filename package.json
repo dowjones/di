@@ -1,6 +1,6 @@
 {
   "name": "areus-di",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Areus Dependency Injector",
   "author": "Yuriy Nemtsov <nemtsov@gmail.com>",
   "repository": {
