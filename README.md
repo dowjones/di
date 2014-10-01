@@ -10,6 +10,8 @@ module.exports = Db;
 function Db() {
 }
 
+Db.$inject = [];
+
 Db.prototype.answer = function () {
   return 42;
 };
@@ -39,8 +41,9 @@ that Node.js uses for resolving the modules](http://nodejs.org/api/modules.html#
 apply.
 
 The only difference is that if the `$inject`ed module
-is a "class" (function), a new instance of that class
-will be created and provided as an argument of the constructor
+is a "class" (function) which has an `$inject` property
+that is an array, a new instance of that class will be created
+and provided as an argument of the constructor
 of the class that `$inject`ed it. This happens recursively.
 Thus, if the injected class had an `$inject` of its own, that
 would be resolved first.
