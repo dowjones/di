@@ -12,8 +12,11 @@ describe('Instantiator', function () {
   });
 
   it('should create instance without deps', function () {
+    function Factory () { this.answer = 42; }
+    Factory.$inject = [];
+
     resolver.resolve.returns([
-      new Package('a', function () { this.answer = 42; })
+      new Package('a', Factory)
     ]);
 
     var instance = unit.create('a');
@@ -24,6 +27,8 @@ describe('Instantiator', function () {
     var pkgA, pkgB, instance;
 
     function B() { this.fav = 7; }
+    B.$inject = [];
+
     function A(b) { this.fav = b.fav; }
     A.$inject = ['b'];
 
