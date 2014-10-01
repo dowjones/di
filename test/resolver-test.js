@@ -42,11 +42,25 @@ describe('Resolver', function () {
     should.exist(list[0].path);
   });
 
-  it('should allow providing pre-resolved packages', function () {
-    unit.provide({a: '7'});
-    var list = unit.resolve('a');
-    list.length.should.equal(1);
-    list[0].factory.should.equal('7');
+  describe('provide', function () {
+    it('should allow providing pre-resolved packages', function () {
+      unit.provide({a: '7'});
+      var list = unit.resolve('a');
+      list.length.should.equal(1);
+      list[0].factory.should.equal('7');
+    });
+
+    it('should allow provided classes to $inject', function () {
+      function Foo(a) { this.a = a; }
+      Foo.$inject = ['a'];
+      unit.provide({
+        foo: Foo,
+        a: 7
+      });
+      var list = unit.resolve('foo');
+      list.length.should.equal(2);
+      list[0].factory.should.equal(7);
+      list[1].factory.$inject.should.eql(['a']);
+    });
   });
 });
-
