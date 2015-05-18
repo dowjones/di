@@ -1,4 +1,4 @@
-# Dependency Injector [![Build Status](https://secure.travis-ci.org/areusjs/di.png)](http://travis-ci.org/areusjs/di) [![NPM version](https://badge.fury.io/js/areus-di.svg)](http://badge.fury.io/js/areus-di)
+# Dependency Injector [![Build Status](https://secure.travis-ci.org/dowjones/di.png)](http://travis-ci.org/dowjones/di) [![NPM version](https://badge.fury.io/js/areus-di.svg)](http://badge.fury.io/js/areus-di)
 
 Here's an example of a module that has two parts: a service and a db.
 The service depends on the db.
